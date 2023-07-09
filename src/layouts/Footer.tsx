@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '@/assets/images/technet-logo-white.png';
 import { RiFacebookBoxFill, RiInstagramLine } from 'react-icons/ri';
 export default function Footer() {

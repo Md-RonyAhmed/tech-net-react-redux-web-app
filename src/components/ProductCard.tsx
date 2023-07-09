@@ -10,7 +10,7 @@ interface IProps {
 export default function ProductCard({ product }: IProps) {
   const handleAddProduct = (product: IProduct) => {
     toast({
-      description: 'Product Added',
+      description: `Product Added ${product}`,
     });
   };
   return (
