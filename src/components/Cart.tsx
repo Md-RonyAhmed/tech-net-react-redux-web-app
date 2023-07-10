@@ -54,7 +54,7 @@ export default function Cart() {
                 <img src={product?.image} alt="" className="h-full" />
               </div>
               <div className="px-2 w-full flex flex-col gap-3">
-                <h1 className="text-lg self-center">{product?.model}</h1>
+                <h1 className="text-lg">{product?.model}</h1>
                 <p>Quantity: {product.quantity}</p>
                 <p className="text-base">
                   Total Price:{' '}
