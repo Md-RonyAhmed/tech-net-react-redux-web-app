@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IProduct } from '@/types/globalTypes';
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface ICart {
   products: IProduct[];
@@ -16,7 +16,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action) => {
+    addToCart: (state, action: PayloadAction<IProduct>) => {
       const existingProduct = state.products.find(
         (product) => product._id === action.payload._id
       );
@@ -27,8 +27,30 @@ const cartSlice = createSlice({
       }
       state.total += action.payload.price;
     },
+    removeOne: (state, action: PayloadAction<IProduct>) => {
+      const existingProduct = state.products.find(
+        (product) => product._id === action.payload._id
+      );
+
+      if (existingProduct && existingProduct.quantity! > 1) {
+        existingProduct.quantity = existingProduct.quantity! - 1;
+      } else {
+        state.products = state.products.filter(
+          (product) => product._id !== action.payload._id
+        );
+      }
+
+      state.total -= action.payload.price;
+    },
+    removeFromCart: (state, action: PayloadAction<IProduct>) => {
+      state.products = state.products.filter(
+        (product) => product._id !== action.payload._id
+      );
+
+      state.total -= action.payload.price * action.payload.quantity!;
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeOne, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

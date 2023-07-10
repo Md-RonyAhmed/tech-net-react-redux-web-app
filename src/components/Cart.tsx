@@ -14,24 +14,27 @@ import {
 } from 'react-icons/hi';
 import { Button } from './ui/button';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { addToCart } from '@/redux/features/cart/cartSlice';
+import { addToCart, removeFromCart, removeOne } from '@/redux/features/cart/cartSlice';
 
 export default function Cart() {
   const { products, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  const totalQuantity = products.reduce((total, product) => total + product.quantity!, 0);
+  const totalQuantity = products.reduce(
+    (total, product) => total + product.quantity!,
+    0
+  );
   return (
     <Sheet>
       <SheetTrigger>
         <Button variant="ghost">
           <HiOutlineShoppingCart size="25" />
-          <sup className='text-red-600 font-bold'>{totalQuantity}</sup>
+          <sup className="text-red-600 font-bold">{totalQuantity}</sup>
         </Button>
       </SheetTrigger>
       <SheetContent className="overflow-auto relative">
         <SheetHeader>
           <SheetTitle>Cart</SheetTitle>
-          <h1>Total: {total.toFixed(2)}</h1>
+          <h1>Total: {total.toFixed(2)} $</h1>
         </SheetHeader>
         <div className="space-y-5">
           {products.map((product) => (
@@ -54,10 +57,10 @@ export default function Cart() {
                 <Button onClick={() => dispatch(addToCart(product))}>
                   <HiOutlinePlus size="20" />
                 </Button>
-                <Button>
+                <Button onClick={() => dispatch(removeOne(product))}>
                   <HiMinus size="20" />
                 </Button>
-                <Button
+                <Button onClick={() => dispatch(removeFromCart(product))}
                   variant="destructive"
                   className="bg-red-500 hover:bg-red-400"
                 >
