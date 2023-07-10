@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Button } from '@/components/ui/button';
 import { DatePickerWithPresets } from '@/components/ui/datePickerWithPreset';
 import { Input } from '@/components/ui/input';
@@ -14,36 +16,55 @@ export default function Checkout() {
 
   const { products } = useAppSelector((state) => state.cart);
 
+  // Calculate subtotal
+  const subTotal = products.reduce(
+    (acc, product) => acc + product.price * product.quantity!,
+    0
+  );
+
+  // Calculate delivery fee (1% of subtotal)
+  const deliveryFee = Number((subTotal * 0.01).toFixed(2));
+
+  // Calculate total
+  const total = (subTotal + deliveryFee).toFixed(2);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-80px)] gap-10 text-primary">
+    <form
+      className="flex justify-center items-center h-[calc(100vh-80px)] gap-10 text-primary"
+      onSubmit={handleSubmit}
+    >
       <div className="max-w-3xl w-full">
-        <h1 className="mb-2">Delivery Information</h1>
+        <h1 className="mb-2 font-bold">Delivery Information</h1>
         <div className="h-[60vh] border border-gray-300 rounded-md p-10 overflow-auto">
           <div className="flex gap-5">
             <div className="w-full space-y-5">
               <div>
-                <Label htmlFor="name">Name</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Label htmlFor="name">Name<sup className='text-red-500 text-base'>*</sup></Label>
+                <Input type="text" id="name" className="mt-2" required />
               </div>
               <div>
-                <Label htmlFor="name">Email</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Label htmlFor="email">Email<sup className='text-red-500 text-base'>*</sup></Label>
+                <Input type="email" id="email" className="mt-2" required/>
               </div>
             </div>
             <div className="w-full space-y-5">
               <div>
-                <Label htmlFor="name">Phone</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Label htmlFor="phone">Phone<sup className='text-red-500 text-base'>*</sup></Label>
+                <Input type="number" id="phone" className="mt-2" required/>
               </div>
               <div>
-                <Label htmlFor="name">City</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Label htmlFor="name">City<sup className='text-red-500 text-base'>*</sup></Label>
+                <Input type="text" id="name" className="mt-2" required/>
               </div>
             </div>
           </div>
           <div className="mt-5">
-            <Label htmlFor="name">Address</Label>
-            <Textarea id="name" className="mt-2" />
+            <Label htmlFor="address">Address<sup className='text-red-500 text-base'>*</sup></Label>
+            <Textarea id="address" className="mt-2" required/>
           </div>
           <div className="flex items-center gap-2 mt-5">
             <Label className="text-lg">Scheduled Delivery</Label>
@@ -92,7 +113,7 @@ export default function Checkout() {
         </div>
       </div>
       <div className="max-w-lg w-full">
-        <h1 className="mb-2">Order Summery</h1>
+        <h1 className="mb-2 font-bold">Order Summery</h1>
         <div className="border border-gray-300 rounded-md h-[60vh] p-10 flex flex-col">
           <div className="flex-grow  mb-2 space-y-2 overflow-auto">
             {products.map((product) => (
@@ -117,20 +138,20 @@ export default function Checkout() {
           <div className="space-y-2">
             <div className="flex justify-between text-lg">
               <p>Subtotal</p>
-              <p>77.90$</p>
+              <p>{subTotal} Bdt</p>
             </div>
             <div className="flex justify-between text-lg">
               <p>Delivery</p>
-              <p>4.5$</p>
+              <p>{deliveryFee} Bdt</p>
             </div>
             <div className="flex justify-between text-xl font-bold">
               <p>Total</p>
-              <p>81.95$</p>
+              <p>{total} Bdt</p>
             </div>
-            <Button className="w-full">Checkout</Button>
           </div>
+          <Button className="w-full my-3">Checkout</Button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
