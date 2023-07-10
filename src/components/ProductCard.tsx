@@ -26,10 +26,19 @@ export default function ProductCard({ product }: IProps) {
         </Link>
         <p>Rating: {product?.rating}</p>
         <p className="text-sm">
-          Availability: {product?.status ? 'In stock' : 'Out of stock'}
+          Availability:{' '}
+          {product?.status ? (
+            'In stock'
+          ) : (
+            <span className="text-red-600">Out of stock</span>
+          )}
         </p>
         <p className="text-sm">Price: {product?.price} Bdt</p>
-        <Button variant="default" onClick={() => handleAddProduct(product)}>
+        <Button
+          variant="default"
+          disabled={!product?.status}
+          onClick={() => handleAddProduct(product)}
+        >
           Add to cart
         </Button>
       </div>
