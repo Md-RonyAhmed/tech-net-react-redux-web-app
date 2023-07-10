@@ -1,9 +1,9 @@
 export interface IProduct {
   _id: number;
-  name: string;
+  model: string;
   image: string;
   price: number;
-  features: string[];
+  keyFeature: string[];
   status: boolean;
   rating: number;
   quantity?: number;
