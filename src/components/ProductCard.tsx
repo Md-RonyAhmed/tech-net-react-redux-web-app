@@ -28,7 +28,7 @@ export default function ProductCard({ product }: IProps) {
         <p className="text-sm">
           Availability: {product?.status ? 'In stock' : 'Out of stock'}
         </p>
-        <p className="text-sm">Price: {product?.price}</p>
+        <p className="text-sm">Price: {product?.price} Bdt</p>
         <Button variant="default" onClick={() => handleAddProduct(product)}>
           Add to cart
         </Button>
