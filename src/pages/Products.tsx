@@ -1,20 +1,14 @@
 import ProductCard from '@/components/ProductCard';
+import Error from '@/components/ui/Error';
+import Loading from '@/components/ui/Loading';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-// import { useToast } from '@/components/ui/use-toast';
+import { useGetProductsQuery } from '@/redux/api/apiSlice';
 import { IProduct } from '@/types/globalTypes';
-import { useEffect, useState } from 'react';
 
 export default function Products() {
-  const [data, setData] = useState<IProduct[]>([]);
-  useEffect(() => {
-    fetch('https://tech-net-server-lilac.vercel.app/products')
-      .then((res) => res.json())
-      .then((data) => setData(data.data));
-  }, []);
-
-  // const { toast } = useToast();
+  const { data, isLoading, isError } = useGetProductsQuery(undefined);
 
   //! Dummy Data
 
@@ -26,6 +20,32 @@ export default function Products() {
   const handleSlider = (value: number[]) => {
     console.log(value);
   };
+
+  if (isLoading && !data) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+
+  if (!isLoading && isError) {
+    return (
+      <div>
+        <Error error="Error fetching products" />
+      </div>
+    );
+  }
+
+  if (!isLoading && !isError && data?.data?.length <= 0) {
+    return (
+      <div>
+        <Error error="No products were found!" />
+      </div>
+    );
+  }
+
+
 
   // let productsData;
 
@@ -64,7 +84,7 @@ export default function Products() {
         </div>
       </div>
       <div className="col-span-9 grid grid-cols-3 gap-10 pb-20">
-        {data?.map((product) => (
+        {data?.data?.map((product: IProduct) => (
           <ProductCard product={product} />
         ))}
       </div>
