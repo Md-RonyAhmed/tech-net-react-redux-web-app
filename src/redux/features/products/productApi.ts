@@ -8,7 +8,24 @@ const productApi = api.injectEndpoints({
     getProduct: builder.query({
       query: (id) => `/product/${id}`,
     }),
+    postComment: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/comment/${id}`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['comments'],
+    }),
+    getComment: builder.query({
+      query: (id) => `/comment/${id}`,
+      providesTags: ['comments'],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductQuery } = productApi;
+export const {
+  useGetProductsQuery,
+  useGetProductQuery,
+  useGetCommentQuery,
+  usePostCommentMutation,
+} = productApi;
