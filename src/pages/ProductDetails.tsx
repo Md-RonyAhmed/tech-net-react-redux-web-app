@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import ProductReview from '@/components/ProductReview';
 import Error from '@/components/ui/Error';
 import Loading from '@/components/ui/Loading';
@@ -67,7 +68,7 @@ export default function ProductDetails() {
           </Button>
         </div>
       </div>
-      <ProductReview />
+      <ProductReview id={id!}  />
     </>
   );
 }
