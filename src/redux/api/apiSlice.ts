@@ -5,6 +5,6 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://tech-net-server-lilac.vercel.app',
   }),
-  tagTypes: ['comments'],
+  tagTypes: ['comments','products'],
   endpoints: () => ({}),
 });

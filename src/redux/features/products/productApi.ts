@@ -4,9 +4,11 @@ const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => '/products',
+      providesTags: ['products'],
     }),
     getProduct: builder.query({
       query: (id) => `/product/${id}`,
+      providesTags: ['products'],
     }),
     postComment: builder.mutation({
       query: ({ id, data }) => ({
