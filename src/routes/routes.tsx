@@ -30,6 +30,10 @@ const routes = createBrowserRouter([
         path: '/checkout',
         element: <Checkout />,
       },
+      {
+        path: '/payment',
+        element: <Payment />,
+      },
     ],
   },
   {
@@ -39,10 +43,6 @@ const routes = createBrowserRouter([
   {
     path: '/signup',
     element: <Signup />,
-  },
-  {
-    path: '/payment',
-    element: <Payment />,
   },
   {
     path: '*',

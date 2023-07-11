@@ -3,6 +3,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/technet-logo.png';
 import { LoginForm } from '@/components/LoginForm';
+import Footer from '@/layouts/Footer';
 
 export default function Login() {
   return (
@@ -65,6 +66,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
