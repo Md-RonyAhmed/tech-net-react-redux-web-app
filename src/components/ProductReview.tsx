@@ -37,11 +37,13 @@ export default function ProductReview({ id }: IProps) {
 
   return (
     <div className="max-w-7xl mx-auto mt-5">
+      <h1 className="font-bold text-lg py-2">Comments:</h1>
       <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
         <Textarea
           className="min-h-[30px]"
           onChange={handleChange}
           value={inputValue}
+          placeholder='Give your thoughts and feedbacks...'
         />
         <Button
           type="submit"
