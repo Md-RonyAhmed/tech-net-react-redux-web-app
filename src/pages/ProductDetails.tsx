@@ -2,7 +2,7 @@ import ProductReview from '@/components/ProductReview';
 import Error from '@/components/ui/Error';
 import Loading from '@/components/ui/Loading';
 import { Button } from '@/components/ui/button';
-import { useGetProductQuery } from '@/redux/api/apiSlice';
+import { useGetProductQuery } from '@/redux/features/products/productApi';
 import { addToCart } from '@/redux/features/cart/cartSlice';
 import { useAppDispatch } from '@/redux/hook';
 import { useParams } from 'react-router-dom';
