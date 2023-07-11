@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { SignupForm } from '../components/SignUpForm';
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/technet-logo-white.png';
+import logo from '../assets/images/technet-logo.png';
 
 export default function Signup() {
   return (
@@ -22,11 +22,13 @@ export default function Signup() {
             className="absolute inset-0 bg-cover"
             style={{
               backgroundImage:
-              'url(https://img.freepik.com/free-vector/forgot-password-concept-illustration_114360-1123.jpg?w=740&t=st=1689076462~exp=1689077062~hmac=9e18f9401bec5079df62d035d79a0749b3bfb57bc1b92da49465608ccbad9f73)',
+                'url(https://img.freepik.com/free-vector/forgot-password-concept-illustration_114360-1123.jpg?w=740&t=st=1689076462~exp=1689077062~hmac=9e18f9401bec5079df62d035d79a0749b3bfb57bc1b92da49465608ccbad9f73)',
             }}
           />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            <img className="h-8" src={logo} alt="" />
+            <Link to="/">
+              <img className="h-8" src={logo} alt="logo" />
+            </Link>
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2"></blockquote>
