@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
+import { createUser } from '@/redux/features/user/userSlice';
+import { useAppDispatch } from '@/redux/hook';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -23,9 +25,22 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
+  const dispatch = useAppDispatch();
+
   const onSubmit = (data: SignupFormInputs) => {
-    console.log(data);
+    // const errors = validate(data);
+    // if (errors) {
+    //   return;
+    // }
+    dispatch(createUser({ email: data.email, password: data.password }));
   };
+
+  // const validate = (value: SignupFormInputs) => {
+  //   if (value.confirmPassword !== value.password) {
+  //     return 'Passwords do not match';
+  //   }
+  //   return true;
+  // };
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
@@ -54,13 +69,17 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
               {...register('password', { required: 'Password is required' })}
             />
             {errors.password && <p>{errors.password.message}</p>}
-            <Input
-              id="password"
+            {/* <Input
+              id="confirmPassword"
               placeholder="confirm password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
+              {...register('confirmPassword', {
+                required: 'Confirm password is required',
+              })}
             />
+            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>} */}
           </div>
           <Button>Create Account</Button>
         </div>

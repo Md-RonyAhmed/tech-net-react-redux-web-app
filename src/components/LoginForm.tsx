@@ -1,13 +1,15 @@
 'use client';
 
-import * as React from 'react';
-
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { loginUser } from '@/redux/features/user/userSlice';
+import { useEffect } from 'react';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -23,9 +25,22 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
+  const { user, isLoading } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
+
   const onSubmit = (data: LoginFormInputs) => {
-    console.log(data);
+    dispatch(loginUser({ email: data.email, password: data.password }));
   };
+
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate(from, { replace: true });
+    }
+  }, [user.email, isLoading, navigate, from]);
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
