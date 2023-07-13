@@ -35,7 +35,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
   const onSubmit = (data: LoginFormInputs) => {
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
-
+ 
   useEffect(() => {
     if (user.email && !isLoading) {
       navigate(from, { replace: true });
