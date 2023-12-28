@@ -8,6 +8,7 @@ import Checkout from '@/pages/Checkout';
 import Signup from '@/pages/Signup';
 import ProductDetails from '@/pages/ProductDetails';
 import Payment from '@/pages/Payment';
+import AddProduct from '@/pages/AddProduct';
 
 const routes = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ const routes = createBrowserRouter([
       {
         path: '/payment',
         element: <Payment />,
+      },
+      {
+        path: '/add-product',
+        element: <AddProduct />,
+      },
+      {
+        path: '/edit-product',
+        element: <AddProduct />,
       },
     ],
   },
