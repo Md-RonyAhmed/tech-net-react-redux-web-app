@@ -9,16 +9,16 @@ export default function AddProduct() {
   const [productName, setProductName] = useState('');
   const [price, setPrice] = useState('');
   const [keyFeatures, setKeyFeatures] = useState('');
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
   const [imgUrl, setImgUrl] = useState('');
   const [rating, setRating] = useState('');
 
   const handleSubmit = async () => {
     // Validate the form data before submission
-    if (!productName || !price || !keyFeatures || !imgUrl) {
-      console.error('Please fill in all required fields');
-      return;
-    }
+    // if (!productName || !price || !keyFeatures || !imgUrl) {
+    //   console.error('Please fill in all required fields');
+    //   return;
+    // }
 
     const newProduct = {
       model: productName,
@@ -31,24 +31,26 @@ export default function AddProduct() {
     };
 
     // Send a POST request to your backend API to add the new product
-    try {
-      const response = await fetch('https://your-backend-api.com/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newProduct),
-      });
+    // try {
+    //   const response = await fetch('https://your-backend-api.com/products', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(newProduct),
+    //   });
 
-      if (response.ok) {
-        console.log('Product added successfully');
-        // Optionally, you can redirect the user or show a success message
-      } else {
-        console.error('Failed to add product:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error adding product:');
-    }
+    //   if (response.ok) {
+    //     console.log('Product added successfully');
+    //     // Optionally, you can redirect the user or show a success message
+    //   } else {
+    //     console.error('Failed to add product:', response.statusText);
+    //   }
+    // } catch (error) {
+    //   console.error('Error adding product:');
+    // }
+
+    console.log(newProduct)
   };
   return (
     <div className="flex justify-center items-center h-[100vh] text-primary my-8">
