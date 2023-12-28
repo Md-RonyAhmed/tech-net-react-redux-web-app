@@ -66,6 +66,13 @@ export default function ProductDetails() {
           >
             Add to cart
           </Button>
+          <Button className='ml-4'
+            variant="outline"
+            disabled={!product?.status}
+            onClick={() => dispatch(addToCart(product))}
+          >
+            Edit Product
+          </Button>
         </div>
       </div>
       <ProductReview id={id!}  />
