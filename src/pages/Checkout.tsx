@@ -43,28 +43,38 @@ export default function Checkout() {
           <div className="flex gap-5">
             <div className="w-full space-y-5">
               <div>
-                <Label htmlFor="name">Name<sup className='text-red-500 text-base'>*</sup></Label>
+                <Label htmlFor="name">
+                  Name<sup className="text-red-500 text-base">*</sup>
+                </Label>
                 <Input type="text" id="name" className="mt-2" required />
               </div>
               <div>
-                <Label htmlFor="email">Email<sup className='text-red-500 text-base'>*</sup></Label>
-                <Input type="email" id="email" className="mt-2" required/>
+                <Label htmlFor="email">
+                  Email<sup className="text-red-500 text-base">*</sup>
+                </Label>
+                <Input type="email" id="email" className="mt-2" required />
               </div>
             </div>
             <div className="w-full space-y-5">
               <div>
-                <Label htmlFor="phone">Phone<sup className='text-red-500 text-base'>*</sup></Label>
-                <Input type="number" id="phone" className="mt-2" required/>
+                <Label htmlFor="phone">
+                  Phone<sup className="text-red-500 text-base">*</sup>
+                </Label>
+                <Input type="number" id="phone" className="mt-2" required />
               </div>
               <div>
-                <Label htmlFor="name">City<sup className='text-red-500 text-base'>*</sup></Label>
-                <Input type="text" id="name" className="mt-2" required/>
+                <Label htmlFor="name">
+                  City<sup className="text-red-500 text-base">*</sup>
+                </Label>
+                <Input type="text" id="name" className="mt-2" required />
               </div>
             </div>
           </div>
           <div className="mt-5">
-            <Label htmlFor="address">Address<sup className='text-red-500 text-base'>*</sup></Label>
-            <Textarea id="address" className="mt-2" required/>
+            <Label htmlFor="address">
+              Address<sup className="text-red-500 text-base">*</sup>
+            </Label>
+            <Textarea id="address" className="mt-2" required />
           </div>
           <div className="flex items-center gap-2 mt-5">
             <Label className="text-lg">Scheduled Delivery</Label>
@@ -93,14 +103,7 @@ export default function Checkout() {
               <RadioGroup defaultValue="comfortable" className="flex">
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem
-                    value="online"
-                    id="r1"
-                    className="border border-gray-400"
-                  />
-                  <Label htmlFor="r1">Online payment</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem
+                    required
                     value="cash"
                     id="r2"
                     className="border border-gray-400"
@@ -149,7 +152,7 @@ export default function Checkout() {
               <p>{total} Bdt</p>
             </div>
           </div>
-          <Button className="w-full my-3">Checkout</Button>
+          <Button className="w-full my-3">Order Now</Button>
         </div>
       </div>
     </form>
