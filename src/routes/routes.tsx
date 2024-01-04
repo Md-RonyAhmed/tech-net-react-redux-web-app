@@ -9,6 +9,7 @@ import Signup from '@/pages/Signup';
 import ProductDetails from '@/pages/ProductDetails';
 import Payment from '@/pages/Payment';
 import AddProduct from '@/pages/AddProduct';
+import EditProduct from '@/pages/EditProduct';
 
 const routes = createBrowserRouter([
   {
@@ -40,8 +41,8 @@ const routes = createBrowserRouter([
         element: <AddProduct />,
       },
       {
-        path: '/edit-product',
-        element: <AddProduct />,
+        path: '/edit-product/:id',
+        element: <EditProduct />,
       },
     ],
   },

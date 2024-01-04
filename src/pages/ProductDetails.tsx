@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useGetProductQuery } from '@/redux/features/products/productApi';
 import { addToCart } from '@/redux/features/cart/cartSlice';
 import { useAppDispatch } from '@/redux/hook';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -53,7 +53,7 @@ export default function ProductDetails() {
           <p className="text-xl">
             Price: <span className="font-bold">{product?.price}</span> Bdt
           </p>
-          <h1 className='font-bold text-xl'>Key Features:</h1>
+          <h1 className="font-bold text-xl">Key Features:</h1>
           <ul className="space-y-1 text-lg list-disc">
             {product?.keyFeature?.map((feature: string) => (
               <li key={feature}>{feature}</li>
@@ -66,16 +66,14 @@ export default function ProductDetails() {
           >
             Add to cart
           </Button>
-          <Button className='ml-4'
-            variant="outline"
-            disabled={!product?.status}
-            onClick={() => dispatch(addToCart(product))}
-          >
-            Edit Product
-          </Button>
+          <Link to={`/edit-product/${id}`}>
+            <Button className="ml-4" variant="outline">
+              Edit Product
+            </Button>
+          </Link>
         </div>
       </div>
-      <ProductReview id={id!}  />
+      <ProductReview id={id!} />
     </>
   );
 }
